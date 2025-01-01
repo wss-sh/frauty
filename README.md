@@ -1,102 +1,66 @@
-# Frauty - Website Safety Checker Extension
+# Frauty Browser Extension
 
 <div align="center">
-  <img src="extension/icons/icon128.png" alt="Frauty Logo" width="128" height="128">
-  <h3>Protect yourself from online fraud with advanced website safety checks</h3>
+  <img src="icons/icon128.png" alt="Frauty Logo" width="128" height="128">
+  <h3>Browser extension for instant website safety checks</h3>
 </div>
 
-## 🚀 Features
+## Overview
 
-- **Real-time Safety Checks**: Get instant domain safety scores while browsing
-- **Comprehensive Analysis**: Evaluates DNS security, SSL certificates, domain age, and more
-- **Blacklist Detection**: Cross-references domains with known scam databases
-- **Community Trust Ratings**: Benefit from aggregated user experiences
-- **Privacy First**: Your browsing data stays private and secure
+Frauty is a browser extension that helps protect users from online fraud by providing real-time safety checks for websites. It analyzes various security aspects including DNS security, SSL certificates, domain age, and blacklist status to generate a comprehensive safety score.
 
-## 📦 Installation
+## Features
 
-### Chrome Web Store (Recommended)
-The easiest way to install Frauty is through the [Chrome Web Store](https://chrome.google.com/webstore/detail/frauty).
+- Real-time domain safety scoring
+- SSL certificate verification
+- Domain age checking
+- Blacklist cross-referencing
+- Community-driven trust ratings
+- Instant visual warnings for suspicious sites
 
-### Manual Installation (Latest Build)
-1. Download the latest build from our [releases page](https://github.com/wss-sh/frauty/releases)
-2. Open Chrome and navigate to `chrome://extensions`
-3. Enable "Developer mode" in the top right corner
-4. Drag and drop the downloaded `.zip` file into the extensions page
+## Installation
 
-### Development Build
-```bash
-# Clone the repository
-git clone https://github.com/wss-sh/frauty.git
+### From Chrome Web Store
+Visit the [Chrome Web Store](https://chrome.google.com/webstore/detail/frauty) and click "Add to Chrome"
 
-# Install dependencies
-cd frauty
-npm install
+### Manual Installation (Development)
+1. Clone this repository
+2. Open Chrome and go to `chrome://extensions`
+3. Enable "Developer mode"
+4. Click "Load unpacked" and select the extension directory
 
-# Build the extension
-npm run build
+## Development
 
-# The built extension will be in the dist/ directory
-```
+The extension is built with vanilla JavaScript and uses the Chrome Extension APIs.
 
-## 🛠️ Development
+### Files
+- `background.js` - Main background script for the extension
+- `popup.js` - Handles the extension popup UI and interactions
+- `popup.html` - Popup interface HTML
+- `warning.js` - Manages warning banners for unsafe sites
+- `exceptions.js` - Handles domain exceptions and whitelisting
+- `manifest.json` - Extension configuration and permissions
 
-### Prerequisites
-- Node.js (v16 or higher)
-- npm (v7 or higher)
+### API Integration
+The extension communicates with the Frauty API to retrieve domain safety scores. API documentation is available at [docs.frauty.com](https://docs.frauty.com).
 
-### Setup
-```bash
-# Install dependencies
-npm install
+## Contributing
 
-# Start development mode
-npm run dev
-
-# Run tests
-npm test
-
-# Build for production
-npm run build
-```
-
-### Project Structure
-```
-frauty/
-├── extension/           # Extension source code
-│   ├── background.js   # Background script
-│   ├── popup/          # Popup UI components
-│   ├── content/        # Content scripts
-│   └── icons/          # Extension icons
-├── dist/               # Built extension files
-├── tests/              # Test files
-└── scripts/            # Build and utility scripts
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+If you'd like to contribute to the development of Frauty:
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-## 📝 License
+Please ensure your code follows our style guidelines and includes appropriate tests.
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔒 Privacy
+## Links
 
-Frauty takes your privacy seriously. We don't collect any personal browsing data. All domain checks are done through secure API calls, and no personally identifiable information is ever stored. See our [Privacy Policy](https://frauty.com/legal/privacy) for more details.
-
-## 📫 Contact
-
-- Website: [frauty.com](https://frauty.com)
-- Email: support@frauty.com
-- Twitter: [@frauty](https://twitter.com/frauty)
-
-## ⭐ Support
-
-If you find Frauty useful, please consider giving us a star on GitHub! It helps others discover the project. 
+- [Official Website](https://frauty.com)
+- [Documentation](https://docs.frauty.com)
+- [Support](mailto:support@frauty.com) 
