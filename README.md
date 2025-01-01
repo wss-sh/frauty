@@ -1,12 +1,5 @@
 # Frauty Browser Extension
 
-<div align="center">
-  <img src="icons/icon128.png" alt="Frauty Logo" width="128" height="128">
-  <h3>Browser extension for instant website safety checks</h3>
-</div>
-
-## Overview
-
 Frauty is a browser extension that helps protect users from online fraud by providing real-time safety checks for websites. It analyzes various security aspects including DNS security, SSL certificates, domain age, and blacklist status to generate a comprehensive safety score.
 
 ## Features
