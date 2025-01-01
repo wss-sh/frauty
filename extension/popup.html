@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frauty Safety Check</title>
+    <style>
+        body {
+            width: 360px;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            background-color: #f9fafb;
+        }
+        h2 {
+            margin: 0 0 12px 0;
+            color: #111827;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        #domain {
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 12px;
+            padding: 8px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+        .score-container {
+            margin: 12px 0;
+            padding: 16px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+        .total-score-ring {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+        .score-ring {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .score-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .score-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .detail {
+            position: relative;
+            padding: 12px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .detail:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .detail-label {
+            font-size: 14px;
+            color: #4b5563;
+            margin-bottom: 8px;
+        }
+        .detail-score {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .detail-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+        }
+        .warning {
+            margin-top: 16px;
+        }
+        .warning-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background-color: #fef2f2;
+            border-radius: 8px;
+            border: 1px solid #fee2e2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.3s ease-out;
+        }
+        .warning-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background-color: #ef4444;
+            color: #fef2f2;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Domain Safety Score</h2>
+    <div id="domain"></div>
+    <div class="score-container">
+        <div class="total-score-ring">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                <circle id="score-progress" class="score-ring" cx="60" cy="60" r="54" fill="none" stroke="#10B981" stroke-width="8" stroke-dasharray="339.292" stroke-dashoffset="339.292"/>
+            </svg>
+            <div class="score-text">
+                <div id="total-score">-</div>
+                <div class="score-label">Safety Score</div>
+            </div>
+        </div>
+        <div class="details">
+            <div class="detail">
+                <div class="detail-label">DNS Security</div>
+                <div id="dns-score" class="detail-score">-</div>
+                <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <div class="detail">
+                <div class="detail-label">SSL Security</div>
+                <div id="ssl-score" class="detail-score">-</div>
+                <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Blacklist Status</div>
+                <div id="blacklist-score" class="detail-score">-</div>
+                <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+            </div>
+            <div class="detail">
+                <div class="detail-label">Domain Age</div>
+                <div id="age-score" class="detail-score">-</div>
+                <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <div class="detail" style="grid-column: span 2;">
+                <div class="detail-label">Trust Rating</div>
+                <div id="trustpilot-score" class="detail-score">-</div>
+                <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div id="warning" class="warning"></div>
+    <script src="popup.js"></script>
+</body>
+</html> 
